@@ -1,20 +1,19 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // --- AYARLAR ---
-// BotFather'dan aldığın Token'ı buraya yapıştır
+// LÜTFEN: Tırnak içine BotFather'dan aldığın TAM token'ı yapıştır.
 const token = '8674387340:AAEB9ZNDVu-q3cY9EiaDsGrsS8bxuuS9P7U'; 
 const bot = new TelegramBot(token, {polling: true});
 
-// Sözleşme Adresin
 const contractAddress = "3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS"; 
 
-// GitHub'a yüklediğin HD Yanardağlı görselin RAW linkini buraya yapıştır
-const imageUrl = "https://raw.githubusercontent.com/wombit1/Telegramwombit/main/wombit_volcano.png"; 
+// GitHub'daki resmine git, resme sağ tıkla ve "Resim adresini kopyala" diyerek buraya yapıştır.
+const imageUrl = "https://raw.githubusercontent.com/wombit1/Telegramwombit/main/BCO.png"; 
 
-// --- START KOMUTU (DASHBOARD) ---
+// --- START KOMUTU ---
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  const firstName = msg.from.first_name; // Kullanıcının adını çeker
+  const firstName = msg.from.first_name || "Warrior"; 
   
   const welcomeMessage = `👑 **The Empire Awaits You, ${firstName}!**\n\n` +
     `Rising from the volcanic fires of Solana. Wombit has taken the throne. Join the sacred herd and claim your glory!\n\n` +
@@ -42,8 +41,7 @@ bot.onText(/\/start/, (msg) => {
     }
   };
 
-  // Resmi gönder, altına kopyalanabilir CA'lı metni ve butonları ekle
-  bot.sendPhoto(chatId, imageUrl, { caption: welcomeMessage, ...options });
-});
-
-console.log("Wombit İmparatorluğu HD Dashboard yayında! 🌋");
+  // Hata yönetimi ekledim (Resim yüklenmezse sadece metin gönderir)
+  bot.sendPhoto(chatId, imageUrl, { caption: welcomeMessage, ...options })
+    .catch((
+      
