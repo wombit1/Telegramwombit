@@ -1,43 +1,7 @@
-const TelegramBot = require('node-telegram-bot-api');
-
-// --- DİKKAT: Aşağıdaki tırnak içine BotFather'dan aldığın kodu yapıştır ---
-const token = '8674387340:AAEB9ZNDVu-q3cY9EiaDsGrsS8bxuuS9P7U'; 
-
-const bot = new TelegramBot(token, {polling: true});
-
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  
-  // Kullanıcının botu başlattığında göreceği İngilizce mesaj
-  const welcomeMessage = `🌍 **Welcome to Wombit Unity!**\n\n` +
-                         `Here; game, token, and awareness unite as one.\n\n` +
-                         `🎮 **Play Tap Tap:** Have fun, learn, and discover the world of Wombats.\n` +
-                         `📈 **Wombit Ecosystem:** Explore contract addresses and community connections.\n` +
-                         `🚀 **Begin your journey now!**`;
-
-  const options = {
-    parse_mode: 'Markdown',
-    reply_markup: {
-      inline_keyboard: [
-        // 1. Satır: Oyun Butonu
-        [{ text: "🎮 Play Wombit Game", web_app: { url: "https://wombit1.github.io/Telegramwombit/" } }],
-        
-        // 2. Satır: Sosyal Medya (Yan yana iki buton)
-        [
-          { text: "🐦 Twitter (X)", url: "https://x.com/wombat_io" },
-          { text: "📢 Announcements", url: "https://t.me/wombit_io_io" }
-        ],
-        
-        // 3. Satır: Chat ve Diğerleri
-        [
-          { text: "💬 Global Chat", url: "https://t.me/wombit_io" },
-          { text: "🎵 TikTok", url: "https://tiktok.com/@wombat_io" }
-        ]
-      ]
-    }
-  };
-
-  bot.sendMessage(chatId, welcomeMessage, options);
-});
-
-console.log("Wombit Bot aktif ve emir bekliyor...");
+{
+  "name": "wombit-bot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": { "start": "node bot.js" },
+  "dependencies": { "node-telegram-bot-api": "^0.64.0" }
+}
