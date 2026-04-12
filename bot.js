@@ -136,10 +136,9 @@ const getCommonOptions = (extraOptions = {}) => ({
 bot.onText(/\/(start|game)/, (msg) => {
   const firstName = msg.from?.first_name || 'Wombat Warrior';
   const text =
-    `🌍 *Wombit Unity Dashboard*\n\n` +
-    `Hoş geldin, *${firstName}*! 👑\n\n` +
-    `Wombit İmparatorluğu Solana'da yükseliyor.\n` +
-    `Oyna, takip et, sürüye katıl.\n\n` +
+    `Welcome, *${firstName}*! 👑\n\n` +
+`The Wombit Empire is rising on Solana.\n` +
+`Play, track, and join the herd.\n\n` +
     `📜 *CA:* \`${contractAddress}\`\n` +
     `_(Kopyalamak için dokun)_\n\n` +
     `🎮 *Play Tap Tap:* Şanını kazanmaya başla!`;
