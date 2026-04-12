@@ -741,4 +741,1579 @@
     }
 
     .level-dot.completed::after {
-      cont
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-full);
+    }
+
+    .level-dot.current {
+      background: rgba(255, 215, 0, 0.2);
+    }
+
+    .level-dot.current::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: var(--progress, 0%);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-full);
+      animation: progressPulse 2s infinite;
+    }
+
+    @keyframes progressPulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    .rewards-track {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .reward-node {
+      flex: 1;
+      text-align: center;
+      padding: var(--space-sm) 4px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all var(--transition-base);
+    }
+
+    .reward-node.unlocked {
+      background: rgba(255, 215, 0, 0.15);
+      border-color: var(--border-gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+
+    .reward-node.current {
+      animation: currentPulse 2s infinite;
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    @keyframes currentPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(255, 215, 0, 0); }
+    }
+
+    .reward-icon {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .reward-name {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .reward-node.unlocked .reward-name {
+      color: var(--primary);
+    }
+
+    /* ── ACTION BUTTONS ── */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 24px;
+      border-radius: var(--radius-xl);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .btn:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #000;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--secondary) 0%, #0099cc 100%);
+      color: #000;
+      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+    }
+
+    .btn-full {
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .btn-full:hover {
+      background: rgba(255, 215, 0, 0.1);
+      border-color: var(--border-gold);
+      transform: translateY(-3px);
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-section {
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-md) var(--space-sm);
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1), transparent 70%);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.15);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto var(--space-sm);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 212, 255, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-desc {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CONTRACT ADDRESS ── */
+    .ca-section {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(138, 43, 226, 0.08));
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ca-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), var(--purple));
+    }
+
+    .ca-label {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .ca-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      user-select: all;
+      transition: all var(--transition-base);
+      position: relative;
+    }
+
+    .ca-box:hover {
+      border-color: var(--secondary);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .ca-text {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--secondary);
+      word-break: break-all;
+      font-weight: 500;
+    }
+
+    .ca-hint {
+      margin-top: var(--space-md);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ── SOCIAL SECTION ── */
+    .social-section {
+      margin-bottom: var(--space-xl);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--transition-base);
+    }
+
+    .social-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    .social-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      transition: all var(--transition-base);
+    }
+
+    .social-card:hover .social-icon {
+      background: rgba(255, 215, 0, 0.15);
+      transform: scale(1.1);
+    }
+
+    .social-info h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .social-info p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: var(--space-xl);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      max-width: 320px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--bg-2);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl);
+      text-align: center;
+      max-width: 340px;
+      width: 90%;
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.3s var(--transition-bounce);
+      box-shadow: 0 0 60px var(--primary-glow);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto var(--space-md);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 30px var(--primary-glow);
+      animation: modalPop 0.5s var(--transition-bounce);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0) rotate(-180deg); }
+      100% { transform: scale(1) rotate(0); }
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .modal-text {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: var(--space-lg);
+      line-height: 1.5;
+      font-size: 1rem;
+    }
+
+    .modal-btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #000;
+      border: none;
+      padding: 16px 40px;
+      border-radius: var(--radius-xl);
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .modal-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--success);
+      color: #000;
+      padding: 16px 32px;
+      border-radius: var(--radius-xl);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 10000;
+      box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── CONFETTI ── */
+    .confetti {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      z-index: 99999;
+    }
+
+    /* ── QR BUTTON ── */
+    .qr-float {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border: none;
+      color: #000;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-base);
+    }
+
+    .qr-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.6);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 380px) {
+      .wombat-tap { width: 220px; height: 220px; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 768px) {
+      .app-container { padding: var(--space-xl); }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── KEYBOARD STATE ── */
+    body.keyboard-open .wombat-tap {
+      width: 200px;
+      height: 200px;
+    }
+
+    /* ── SAFE AREA ── */
+    @supports (padding: max(0px)) {
+      .app-container {
+        padding-left: max(var(--space-md), var(--safe-left));
+        padding-right: max(var(--space-md), var(--safe-right));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Dynamic Background -->
+  <div class="bg-container">
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+  </div>
+
+  <!-- 3D Canvas -->
+  <div id="canvas-container"></div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663204325821/SXWJdhstUEjasGZi.jpg" alt="WOMBIT" class="loading-logo" id="loadingLogo">
+    <div class="loading-text">LOADING EMPIRE...</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+
+  <!-- Error Fallback -->
+  <div class="error-fallback" id="errorFallback" style="display: none;">
+    <h2>💥 Something Went Wrong</h2>
+    <p>Don't worry, your empire is safe!</p>
+    <button onclick="location.reload()">Restart App</button>
+  </div>
+
+  <!-- Main App -->
+  <div class="app-container" id="appContainer">
+    
+    <!-- User Bar -->
+    <header class="user-bar">
+      <div class="user-avatar" id="userAvatar" style="background:none;border:none;padding:0;overflow:hidden;"><img src="data:image/png;base64,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" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" alt="WOMBIT"/></div>
+      <div class="user-info">
+        <div class="user-name" id="userName">Wombat Warrior</div>
+        <div class="user-status">Online Now</div>
+      </div>
+      <span class="user-badge" id="userBadge">RECRUIT</span>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-tag">🔥 Viral on Solana</div>
+      <h1 class="hero-title">WOMBIT</h1>
+      <p class="hero-subtitle">The cutest crypto empire. Tap the wombat, earn gold, rule the blockchain! 👑</p>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stat-box">
+        <div class="stat-value" id="totalTaps">0</div>
+        <div class="stat-label">Total Taps</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="coinBalance">0</div>
+        <div class="stat-label">$WOMBIT</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="playerRank">🥉</div>
+        <div class="stat-label">Rank</div>
+      </div>
+    </div>
+
+    <!-- Energy Bar -->
+    <div class="energy-section">
+      <div class="energy-header">
+        <span class="energy-label">⚡ Energy</span>
+        <span class="energy-value" id="energyText">1000 / 1000</span>
+      </div>
+      <div class="energy-track">
+        <div class="energy-fill" id="energyFill" style="width: 100%"></div>
+      </div>
+    </div>
+
+    <!-- Tap Zone -->
+    <section class="tap-zone">
+      <div class="wombat-wrapper">
+        <div class="wombat-glow"></div>
+        <div class="wombat-orbit"></div>
+        <div class="wombat-tap" id="wombatTap">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663204325821/SXWJdhstUEjasGZi.jpg" alt="WOMBIT" class="wombat-image" id="wombatImage">
+        </div>
+      </div>
+      <p class="tap-instruction">Tap WOMBIT to earn coins!</p>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+      <div class="progress-header">
+        <span class="progress-title">🏆 Empire Progress</span>
+        <span class="progress-level" id="progressLevel">Level 1</span>
+      </div>
+      <div class="level-track">
+        <div class="level-dot completed"></div>
+        <div class="level-dot current" style="--progress: 0%"></div>
+        <div class="level-dot"></div>
+        <div class="level-dot"></div>
+        <div class="level-dot"></div>
+      </div>
+      <div class="rewards-track" id="rewardsTrack">
+        <div class="reward-node unlocked">
+          <span class="reward-icon">🥉</span>
+          <span class="reward-name">Recruit</span>
+        </div>
+        <div class="reward-node current">
+          <span class="reward-icon">🥈</span>
+          <span class="reward-name">Soldier</span>
+        </div>
+        <div class="reward-node">
+          <span class="reward-icon">🥇</span>
+          <span class="reward-name">Knight</span>
+        </div>
+        <div class="reward-node">
+          <span class="reward-icon">💎</span>
+          <span class="reward-name">General</span>
+        </div>
+        <div class="reward-node">
+          <span class="reward-icon">👑</span>
+          <span class="reward-name">Emperor</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <div class="action-grid">
+      <button class="btn btn-primary" id="buyBtn">
+        <span>💰</span>
+        <span>Buy $WOMBIT</span>
+      </button>
+      <button class="btn btn-secondary" id="chartBtn">
+        <span>📊</span>
+        <span>Live Chart</span>
+      </button>
+      <button class="btn btn-full" id="inviteBtn">
+        <span>🚀</span>
+        <span>Invite Friends & Earn 2,500 Coins</span>
+      </button>
+    </div>
+
+    <!-- Features -->
+    <section class="features-section">
+      <h3 class="section-header">🎯 Quick Actions</h3>
+      <div class="features-grid">
+        <a href="https://bags.fm/3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS" class="feature-card" target="_blank" rel="noopener">
+          <div class="feature-icon">🛍️</div>
+          <div class="feature-title">Bags.fm</div>
+          <div class="feature-desc">Official Launch</div>
+        </a>
+        <a href="https://gmgn.ai/sol/token/BxBuSTek_3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS" class="feature-card" target="_blank" rel="noopener">
+          <div class="feature-icon">📈</div>
+          <div class="feature-title">GMGN</div>
+          <div class="feature-desc">Track Token</div>
+        </a>
+        <a href="https://jup.ag/swap/SOL-3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS" class="feature-card" target="_blank" rel="noopener">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Jupiter</div>
+          <div class="feature-desc">Best Swap</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Contract Address -->
+    <section class="ca-section">
+      <div class="ca-label">
+        <span>🔐</span>
+        <span>Solana Contract Address</span>
+      </div>
+      <div class="ca-box" id="caBox">
+        <div class="ca-text">3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS</div>
+      </div>
+      <p class="ca-hint">👆 Tap to copy • Always verify before trading</p>
+    </section>
+
+    <!-- Social -->
+    <section class="social-section">
+      <h3 class="section-header">🌐 Join the Empire</h3>
+      <div class="social-grid">
+        <a href="https://x.com/wombat_io" class="social-card" target="_blank" rel="noopener">
+          <div class="social-icon">𝕏</div>
+          <div class="social-info">
+            <h4>Twitter / X</h4>
+            <p>@wombat_io</p>
+          </div>
+        </a>
+        <a href="https://t.me/wombit_io" class="social-card" target="_blank" rel="noopener">
+          <div class="social-icon">💬</div>
+          <div class="social-info">
+            <h4>Community</h4>
+            <p>@wombit_io</p>
+          </div>
+        </a>
+        <a href="https://www.tiktok.com/@wombat_io" class="social-card" target="_blank" rel="noopener">
+          <div class="social-icon">🎵</div>
+          <div class="social-info">
+            <h4>TikTok</h4>
+            <p>@wombat_io</p>
+          </div>
+        </a>
+        <a href="https://t.me/wombitioio" class="social-card" target="_blank" rel="noopener">
+          <div class="social-icon">📢</div>
+          <div class="social-info">
+            <h4>Announcements</h4>
+            <p>@wombitioio</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-brand">WOMBIT EMPIRE</div>
+      <p class="footer-text">
+        Not financial advice. Crypto is risky. DYOR.<br>
+        © 2026 WOMBIT. All rights reserved.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- QR Scanner Button -->
+  <button class="qr-float" id="qrBtn">📷</button>
+
+  <!-- Level Up Modal -->
+  <div class="modal-overlay" id="levelModal">
+    <div class="modal-content">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663204325821/SXWJdhstUEjasGZi.jpg" alt="WOMBIT" class="modal-image">
+      <h3 class="modal-title" id="modalTitle">Level Up!</h3>
+      <p class="modal-text" id="modalText">You've reached a new rank!</p>
+      <button class="modal-btn" id="modalBtn">Claim Reward 🎁</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Copied to clipboard! ✅</div>
+
+  <script>
+    /**
+     * WOMBIT EMPIRE v4.0 - VIRAL PREMIUM EDITION
+     * Complete Telegram SDK v8.0+ Integration
+     * Production Ready | App Store Quality
+     */
+
+    'use strict';
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // CONFIGURATION
+    // ═══════════════════════════════════════════════════════════════════════
+
+    const CONFIG = {
+      TAP_REWARD: 15,
+      MAX_ENERGY: 1000,
+      ENERGY_REGEN_RATE: 1, // per second
+      ENERGY_REGEN_INTERVAL: 1000, // ms
+      SAVE_INTERVAL: 10000, // ms
+      
+      LEVELS: [
+        { name: 'Recruit', icon: '🥉', threshold: 0, reward: 0 },
+        { name: 'Soldier', icon: '🥈', threshold: 1000, reward: 500 },
+        { name: 'Knight', icon: '🥇', threshold: 5000, reward: 2500 },
+        { name: 'General', icon: '💎', threshold: 25000, reward: 10000 },
+        { name: 'Emperor', icon: '👑', threshold: 100000, reward: 50000 }
+      ],
+      
+      LINKS: {
+        buy: 'https://bags.fm/3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS',
+        chart: 'https://gmgn.ai/sol/token/BxBuSTek_3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS',
+        invite: 'https://t.me/wombit_io'
+      },
+      
+      CLOUD_KEY: 'wombit_empire_v4',
+      LOCAL_KEY: 'wombit_empire_v4_local'
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // TELEGRAM SDK MANAGER (Complete v8.0+)
+    // ═══════════════════════════════════════════════════════════════════════
+
+    class TelegramManager {
+      constructor() {
+        this.tg = window.Telegram?.WebApp;
+        this.version = this.tg?.version || '6.0';
+        this.platform = this.tg?.platform || 'unknown';
+        this.isFullscreen = false;
+        this.init();
+      }
+
+      init() {
+        if (!this.tg) {
+          console.log('📱 Running in browser mode');
+          return;
+        }
+
+        try {
+          // Core init
+          this.tg.ready();
+          this.tg.expand();
+          
+          // Fullscreen (v7.0+)
+          this.initFullscreen();
+          
+          // Theme
+          this.syncTheme();
+          
+          // All buttons
+          this.setupButtons();
+          
+          // Viewport & protection
+          this.setupViewport();
+          
+          // Haptic
+          this.setupHaptic();
+          
+          // Sensors
+          this.initSensors();
+          
+          // Biometric (v8.0+)
+          this.initBiometric();
+          
+          // CloudStorage
+          this.cloud = this.tg.CloudStorage;
+          
+          // User data
+          this.user = this.tg.initDataUnsafe?.user;
+          
+          console.log(`✅ Telegram SDK v${this.version} on ${this.platform}`);
+          
+        } catch (err) {
+          console.error('Telegram init error:', err);
+        }
+      }
+
+      initFullscreen() {
+        if (this.tg.requestFullscreen && this.isVersionAtLeast('7.0')) {
+          this.tg.requestFullscreen();
+          this.isFullscreen = true;
+        }
+        
+        this.tg.onEvent('fullscreenChanged', ({ isFullscreen }) => {
+          this.isFullscreen = isFullscreen;
+        });
+      }
+
+      setupButtons() {
+        // MainButton
+        if (this.tg.MainButton) {
+          this.tg.MainButton.setParams({
+            text: '💰 BUY $WOMBIT',
+            color: '#ffd700',
+            text_color: '#000000',
+            is_active: true,
+            is_visible: false
+          });
+          this.tg.MainButton.onClick(() => this.openLink(CONFIG.LINKS.buy));
+        }
+
+        // SecondaryButton (v7.7+)
+        if (this.tg.SecondaryButton && this.isVersionAtLeast('7.7')) {
+          this.tg.SecondaryButton.setParams({
+            text: '📊 CHART',
+            color: '#00d4ff',
+            text_color: '#000000',
+            position: 'left',
+            is_visible: false
+          });
+          this.tg.SecondaryButton.onClick(() => this.openLink(CONFIG.LINKS.chart));
+        }
+
+        // SettingsButton
+        if (this.tg.SettingsButton) {
+          this.tg.SettingsButton.onClick(() => this.showSettings());
+          this.tg.SettingsButton.show();
+        }
+
+        // BackButton
+        if (this.tg.BackButton) {
+          this.tg.BackButton.onClick(() => {
+            this.haptic?.light();
+            this.showConfirm('Exit WOMBIT?', 'Your progress is saved!').then(ok => {
+              if (ok) this.tg.close();
+            });
+          });
+        }
+      }
+
+      setupViewport() {
+        this.tg.onEvent('viewportChanged', ({ isStateStable }) => {
+          if (isStateStable) {
+            const height = this.tg.viewportHeight;
+            const stable = this.tg.viewportStableHeight;
+            
+            if (height < stable * 0.8) {
+              document.body.classList.add('keyboard-open');
+            } else {
+              document.body.classList.remove('keyboard-open');
+            }
+          }
+        });
+
+        // Prevent accidental close
+        this.tg.enableClosingConfirmation?.();
+        this.tg.disableVerticalSwipes?.();
+      }
+
+      setupHaptic() {
+        if (!this.tg.HapticFeedback) return;
+        
+        this.haptic = {
+          light: () => this.tg.HapticFeedback.impactOccurred('light'),
+          medium: () => this.tg.HapticFeedback.impactOccurred('medium'),
+          heavy: () => this.tg.HapticFeedback.impactOccurred('heavy'),
+          success: () => this.tg.HapticFeedback.notificationOccurred('success'),
+          error: () => this.tg.HapticFeedback.notificationOccurred('error'),
+          warning: () => this.tg.HapticFeedback.notificationOccurred('warning')
+        };
+      }
+
+      initSensors() {
+        // Accelerometer for 3D tilt — DÜZELTİLDİ: .change yerine onEvent kullanılıyor
+        if (this.tg.Accelerometer?.start) {
+          this.tg.Accelerometer.start({ refresh_rate: 60 });
+          this.tg.onEvent('accelerometerChanged', () => {
+            const x = (this.tg.Accelerometer.x || 0) * 5;
+            const y = (this.tg.Accelerometer.y || 0) * 5;
+            document.documentElement.style.setProperty('--tilt-x', `${x}deg`);
+            document.documentElement.style.setProperty('--tilt-y', `${y}deg`);
+          });
+        }
+      }
+
+      initBiometric() {
+        if (!this.tg.BiometricManager) return;
+        
+        this.tg.BiometricManager.init((success) => {
+          if (success && this.tg.BiometricManager.isBiometricAvailable) {
+            console.log('Biometric available:', this.tg.BiometricManager.biometricType);
+          }
+        });
+      }
+
+      syncTheme() {
+        const theme = this.tg.colorScheme || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        this.tg.setHeaderColor?.('#0a0a1a');
+        this.tg.setBackgroundColor?.('#0a0a1a');
+        
+        this.tg.onEvent('themeChanged', () => {
+          document.documentElement.setAttribute('data-theme', this.tg.colorScheme);
+        });
+      }
+
+      showSettings() {
+        this.showPopup({
+          title: '⚙️ Settings',
+          message: 'Sound: ON | Haptic: ON | Theme: Auto',
+          buttons: [{ type: 'ok' }]
+        });
+      }
+
+      // CloudStorage
+      async cloudSave(key, data) {
+        if (!this.cloud) return false;
+        return new Promise(resolve => {
+          this.cloud.setItem(key, JSON.stringify(data), (err, success) => {
+            resolve(!err && success);
+          });
+        });
+      }
+
+      async cloudLoad(key) {
+        if (!this.cloud) return null;
+        return new Promise(resolve => {
+          this.cloud.getItem(key, (err, value) => {
+            if (err || !value) resolve(null);
+            else try { resolve(JSON.parse(value)); } catch { resolve(null); }
+          });
+        });
+      }
+
+      // QR Scanner
+      scanQR(text = 'Scan QR') {
+        return new Promise(resolve => {
+          this.tg?.showScanQrPopup?.({ text }, data => resolve(data));
+        });
+      }
+
+      // Utilities
+      openLink(url) {
+        this.tg?.openLink ? this.tg.openLink(url) : window.open(url, '_blank');
+      }
+
+      showPopup(params) {
+        return new Promise(resolve => {
+          this.tg?.showPopup ? this.tg.showPopup(params, resolve) : resolve(null);
+        });
+      }
+
+      showConfirm(title, message) {
+        return new Promise(resolve => {
+          this.tg?.showConfirm ? this.tg.showConfirm(message, resolve) : resolve(confirm(message));
+        });
+      }
+
+      isVersionAtLeast(v) {
+        return this.tg?.isVersionAtLeast?.(v) || false;
+      }
+
+      showMainButton() {
+        this.tg?.MainButton?.show();
+        this.tg?.BackButton?.show();
+        if (this.isVersionAtLeast('7.7')) {
+          this.tg?.SecondaryButton?.show();
+        }
+      }
+
+      // Bot'a veri gönder (rank up, milestone vb.)
+      sendDataToBot(type, payload = {}) {
+        if (!this.tg?.sendData) return; // Telegram dışında sessizce atla
+        try {
+          this.tg.sendData(JSON.stringify({ type, ...payload }));
+        } catch (e) {
+          console.warn('sendData hatası:', e);
+        }
+      }
+    }
+
+    const telegram = new TelegramManager();
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // GAME STATE MANAGER
+    // ═══════════════════════════════════════════════════════════════════════
+
+    class GameState {
+      constructor() {
+        this.data = {
+          coins: 0,
+          totalTaps: 0,
+          energy: CONFIG.MAX_ENERGY,
+          level: 0,
+          lastEnergyUpdate: Date.now(),
+          lastLogin: Date.now(),
+          dailyStreak: 1,
+          unlockedRewards: ['recruit'],
+          referralCount: 0,
+          settings: { sound: true, haptic: true }
+        };
+        this.listeners = new Set();
+        this.init();
+      }
+
+      async init() {
+        await this.load();
+        this.startEnergyRegen();
+        this.startAutoSave();
+        this.checkDailyStreak();
+      }
+
+      async load() {
+        // Try CloudStorage first
+        const cloud = await telegram.cloudLoad(CONFIG.CLOUD_KEY);
+        const local = localStorage.getItem(CONFIG.LOCAL_KEY);
+        const save = cloud || (local ? JSON.parse(local) : null);
+        
+        if (save) {
+          this.data = { ...this.data, ...save };
+          this.calculateOfflineEnergy();
+        }
+        this.notify();
+      }
+
+      async save() {
+        const data = { ...this.data, lastSave: Date.now() };
+        await telegram.cloudSave(CONFIG.CLOUD_KEY, data);
+        localStorage.setItem(CONFIG.LOCAL_KEY, JSON.stringify(data));
+      }
+
+      calculateOfflineEnergy() {
+        const now = Date.now();
+        const offlineSeconds = Math.floor((now - this.data.lastEnergyUpdate) / 1000);
+        const regenAmount = Math.min(
+          offlineSeconds * CONFIG.ENERGY_REGEN_RATE,
+          CONFIG.MAX_ENERGY - this.data.energy
+        );
+        this.data.energy = Math.min(this.data.energy + regenAmount, CONFIG.MAX_ENERGY);
+        this.data.lastEnergyUpdate = now;
+      }
+
+      startEnergyRegen() {
+        setInterval(() => {
+          if (this.data.energy < CONFIG.MAX_ENERGY) {
+            this.data.energy = Math.min(
+              this.data.energy + CONFIG.ENERGY_REGEN_RATE,
+              CONFIG.MAX_ENERGY
+            );
+            this.data.lastEnergyUpdate = Date.now();
+            this.notify();
+          }
+        }, CONFIG.ENERGY_REGEN_INTERVAL);
+      }
+
+      startAutoSave() {
+        setInterval(() => this.save(), CONFIG.SAVE_INTERVAL);
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) this.save();
+        });
+      }
+
+      checkDailyStreak() {
+        const last = new Date(this.data.lastLogin);
+        const today = new Date();
+        
+        if (last.toDateString() !== today.toDateString()) {
+          const diffDays = Math.floor((today - last) / (1000 * 60 * 60 * 24));
+          
+          if (diffDays === 1) {
+            this.data.dailyStreak++;
+            telegram.showPopup({
+              title: `🔥 ${this.data.dailyStreak} Day Streak!`,
+              message: `Welcome back! +500 bonus coins!`,
+              buttons: [{ type: 'ok' }]
+            });
+            this.data.coins += 500;
+          } else if (diffDays > 1) {
+            this.data.dailyStreak = 1;
+          }
+          
+          this.data.lastLogin = Date.now();
+          this.data.energy = CONFIG.MAX_ENERGY; // Full energy daily
+          this.save();
+        }
+      }
+
+      tap() {
+        if (this.data.energy < 1) {
+          return { success: false, reason: 'no_energy' };
+        }
+
+        this.data.energy--;
+        this.data.coins += CONFIG.TAP_REWARD;
+        this.data.totalTaps++;
+        this.data.lastEnergyUpdate = Date.now();
+
+        // Check level up
+        const oldLevel = this.data.level;
+        const newLevel = CONFIG.LEVELS.findIndex((l, i) => {
+          if (i === CONFIG.LEVELS.length - 1) return true;
+          return this.data.coins < CONFIG.LEVELS[i + 1].threshold;
+        });
+
+        const leveledUp = newLevel > oldLevel;
+        if (leveledUp) {
+          this.data.level = newLevel;
+          const levelData = CONFIG.LEVELS[newLevel];
+          this.data.unlockedRewards.push(levelData.name.toLowerCase());
+          this.data.coins += levelData.reward; // Level up bonus
+          this.save();
+          // Bot'a rank up bildirimi gönder
+          telegram.sendDataToBot('rank_up', {
+            newRank: levelData.name,
+            taps: this.data.totalTaps,
+            coins: this.data.coins
+          });
+        }
+
+        // Her 1000 tap'te milestone bildirimi
+        if (this.data.totalTaps % 1000 === 0) {
+          telegram.sendDataToBot('tap_milestone', {
+            taps: this.data.totalTaps,
+            rank: CONFIG.LEVELS[this.data.level].name
+          });
+        }
+
+        this.notify();
+        return {
+          success: true,
+          reward: CONFIG.TAP_REWARD,
+          leveledUp,
+          newLevel: leveledUp ? CONFIG.LEVELS[newLevel] : null
+        };
+      }
+
+      getProgress() {
+        const current = CONFIG.LEVELS[this.data.level];
+        const next = CONFIG.LEVELS[this.data.level + 1];
+        if (!next) return { percent: 100, next: null };
+        
+        const progress = this.data.coins - current.threshold;
+        const needed = next.threshold - current.threshold;
+        return {
+          percent: Math.min(100, (progress / needed) * 100),
+          next
+        };
+      }
+
+      subscribe(fn) {
+        this.listeners.add(fn);
+        return () => this.listeners.delete(fn);
+      }
+
+      notify() {
+        this.listeners.forEach(fn => fn(this.data));
+      }
+    }
+
+    const game = new GameState();
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // UI MANAGER
+    // ═══════════════════════════════════════════════════════════════════════
+
+    class UIManager {
+      constructor() {
+        this.elements = this.cacheElements();
+        this.init();
+      }
+
+      cacheElements() {
+        return {
+          loading: document.getElementById('loadingScreen'),
+          userName: document.getElementById('userName'),
+          userAvatar: document.getElementById('userAvatar'),
+          userBadge: document.getElementById('userBadge'),
+          totalTaps: document.getElementById('totalTaps'),
+          coinBalance: document.getElementById('coinBalance'),
+          playerRank: document.getElementById('playerRank'),
+          energyText: document.getElementById('energyText'),
+          energyFill: document.getElementById('energyFill'),
+          progressLevel: document.getElementById('progressLevel'),
+          wombatTap: document.getElementById('wombatTap'),
+          caBox: document.getElementById('caBox'),
+          toast: document.getElementById('toast'),
+          levelModal: document.getElementById('levelModal'),
+          modalTitle: document.getElementById('modalTitle'),
+          modalText: document.getElementById('modalText'),
+          modalBtn: document.getElementById('modalBtn'),
+          buyBtn: document.getElementById('buyBtn'),
+          chartBtn: document.getElementById('chartBtn'),
+          inviteBtn: document.getElementById('inviteBtn'),
+          qrBtn: document.getElementById('qrBtn')
+        };
+      }
+
+      init() {
+        // Set user info
+        if (telegram.user) {
+          const name = telegram.user.first_name || telegram.user.username || 'Warrior';
+          this.elements.userName.textContent = name;
+          this.elements.userAvatar.textContent = name.charAt(0).toUpperCase();
+        }
+
+        // Subscribe to state
+        game.subscribe(data => this.update(data));
+
+        // Bind events
+        this.bindEvents();
+
+        // Hide loading
+        setTimeout(() => {
+          this.elements.loading.classList.add('hidden');
+          this.showWelcome();
+        }, 2000);
+      }
+
+      bindEvents() {
+        // Tap handler
+        let lastTap = 0;
+        this.elements.wombatTap.addEventListener('click', (e) => {
+          const now = Date.now();
+          if (now - lastTap < 50) return;
+          lastTap = now;
+          this.handleTap(e);
+        });
+
+        // Copy CA
+        this.elements.caBox.addEventListener('click', () => this.copyCA());
+
+        // Modal close
+        this.elements.modalBtn.addEventListener('click', () => {
+          this.elements.levelModal.classList.remove('active');
+          telegram.haptic?.medium();
+        });
+
+        // Buttons
+        this.elements.buyBtn.addEventListener('click', () => {
+          telegram.haptic?.medium();
+          telegram.openLink(CONFIG.LINKS.buy);
+        });
+
+        this.elements.chartBtn.addEventListener('click', () => {
+          telegram.haptic?.medium();
+          telegram.openLink(CONFIG.LINKS.chart);
+        });
+
+        this.elements.inviteBtn.addEventListener('click', () => {
+          telegram.haptic?.success();
+          this.shareApp();
+        });
+
+        this.elements.qrBtn.addEventListener('click', async () => {
+          telegram.haptic?.light();
+          const result = await telegram.scanQR('Scan WOMBIT QR');
+          if (result) console.log('Scanned:', result);
+        });
+
+        // Prevent zoom
+        document.addEventListener('touchstart', e => {
+          if (e.touches.length > 1) e.preventDefault();
+        }, { passive: false });
+        
+        let lastTouch = 0;
+        document.addEventListener('touchend', e => {
+          const now = Date.now();
+          if (now - lastTouch < 300) e.preventDefault();
+          lastTouch = now;
+        }, { passive: false });
+      }
+
+      handleTap(e) {
+        const result = game.tap();
+
+        if (!result.success) {
+          telegram.haptic?.error();
+          telegram.showPopup({
+            title: '⚡ Out of Energy!',
+            message: 'Wait for recharge or invite friends!',
+            buttons: [{ type: 'ok' }]
+          });
+          return;
+        }
+
+        // Visual feedback
+        telegram.haptic?.light();
+        this.elements.wombatTap.classList.add('tapped');
+        setTimeout(() => this.elements.wombatTap.classList.remove('tapped'), 500);
+
+        // Floating text
+        const rect = this.elements.wombatTap.getBoundingClientRect();
+        const x = e.clientX || rect.left + rect.width / 2;
+        const y = e.clientY || rect.top + rect.height / 2;
+        this.spawnFloatText(x, y, `+${result.reward}`);
+
+        // Level up
+        if (result.leveledUp) {
+          setTimeout(() => this.showLevelUp(result.newLevel), 300);
+        }
+
+        // Show buttons after first tap
+        if (game.data.totalTaps === 1) {
+          telegram.showMainButton();
+        }
+      }
+
+      spawnFloatText(x, y, text) {
+        const el = document.createElement('div');
+        el.className = 'float-point';
+        el.textContent = text;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1200);
+      }
+
+      showLevelUp(level) {
+        this.elements.modalTitle.textContent = `${level.icon} Level Up!`;
+        this.elements.modalText.textContent = `You are now ${level.name}! Reward: ${level.reward.toLocaleString()} coins`;
+        this.elements.levelModal.classList.add('active');
+        telegram.haptic?.success();
+        this.spawnConfetti();
+      }
+
+      spawnConfetti() {
+        const colors = ['#ffd700', '#00d4ff', '#ff6b9d', '#00ff88', '#ffffff'];
+        for (let i = 0; i < 40; i++) {
+          setTimeout(() => {
+            const c = document.createElement('div');
+            c.className = 'confetti';
+            c.style.cssText = `
+              left: 50%;
+              top: 50%;
+              background: ${colors[Math.floor(Math.random() * colors.length)]};
+              border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+              transform: rotate(${Math.random() * 360}deg);
+            `;
+            document.body.appendChild(c);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 100 + Math.random() * 200;
+            
+            c.animate([
+              { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+              { transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+            ], { duration: 1000, easing: 'ease-out' }).onfinish = () => c.remove();
+          }, i * 25);
+        }
+      }
+
+      async copyCA() {
+        const ca = '3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS';
+        try {
+          await navigator.clipboard.writeText(ca);
+          this.showToast();
+          telegram.haptic?.success();
+        } catch {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = ca;
+          ta.style.cssText = 'position:fixed;top:-9999px;opacity:0;';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          this.showToast();
+        }
+      }
+
+      showToast() {
+        this.elements.toast.classList.add('show');
+        setTimeout(() => this.elements.toast.classList.remove('show'), 2000);
+      }
+
+      shareApp() {
+        const text = `🦡 Join WOMBIT Empire! The viral crypto sensation!\n\n💰 Tap to earn $WOMBIT\n🏆 Climb from Recruit to Emperor\n🚀 Join millions of players!\n\n👉 https://t.me/wombit_io`;
+        
+        if (navigator.share) {
+          navigator.share({ title: 'WOMBIT Empire', text });
+        } else {
+          telegram.openLink(`https://t.me/share/url?url=${encodeURIComponent('https://t.me/wombit_io')}&text=${encodeURIComponent(text)}`);
+        }
+      }
+
+      showWelcome() {
+        if (game.data.totalTaps === 0) {
+          setTimeout(() => {
+            telegram.showPopup({
+              title: '🦡 Welcome to WOMBIT Empire!',
+              message: 'Tap the cute wombat to earn coins!\nReach 1,000 coins to become a Soldier!\n\n💰 Each tap = 15 coins\n⚡ Energy recharges over time',
+              buttons: [{ type: 'ok', text: 'Start Earning! 💰' }]
+            });
+          }, 500);
+        }
+      }
+
+      update(data) {
+        // Stats
+        this.elements.totalTaps.textContent = data.totalTaps.toLocaleString();
+        this.elements.coinBalance.textContent = data.coins.toLocaleString();
+        
+        // Level
+        const level = CONFIG.LEVELS[data.level];
+        this.elements.playerRank.textContent = level.icon;
+        this.elements.userBadge.textContent = level.name.toUpperCase();
+        this.elements.progressLevel.textContent = `Level ${data.level + 1}`;
+        
+        // Energy
+        const energyPct = (data.energy / CONFIG.MAX_ENERGY) * 100;
+        this.elements.energyText.textContent = `${Math.floor(data.energy)} / ${CONFIG.MAX_ENERGY}`;
+        this.elements.energyFill.style.width = `${energyPct}%`;
+        
+        // Progress dots
+        const dots = document.querySelectorAll('.level-dot');
+        const progress = game.getProgress();
+        
+        dots.forEach((dot, i) => {
+          dot.classList.remove('completed', 'current');
+          if (i < data.level) dot.classList.add('completed');
+          else if (i === data.level) {
+            dot.classList.add('current');
+            dot.style.setProperty('--progress', `${progress.percent}%`);
+          }
+        });
+
+        // Rewards
+        const rewards = document.querySelectorAll('.reward-node');
+        rewards.forEach((node, i) => {
+          node.classList.remove('unlocked', 'current');
+          if (i < data.level) node.classList.add('unlocked');
+          else if (i === data.level) node.classList.add('current');
+        });
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // BACKGROUND — Three.js kaldırıldı, CSS animasyonu yeterli
+    // ═══════════════════════════════════════════════════════════════════════
+
+    class Background3D {
+      constructor() {
+        // Three.js kaldırıldı (~600KB tasarruf).
+        // Arka plan efekti zaten CSS'deki .bg-gradient + bgPulse animasyonu ile sağlanıyor.
+        const container = document.getElementById('canvas-container');
+        if (container) container.style.display = 'none';
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // INITIALIZATION
+    // ═══════════════════════════════════════════════════════════════════════
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new Background3D();
+      new UIManager();
+    });
+
+    // Service Worker: data: URL ile kayıt geçersiz olduğundan kaldırıldı.
+  </script>
+</body>
+</html>
