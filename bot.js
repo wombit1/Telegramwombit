@@ -71,7 +71,7 @@ if (RENDER_URL) {
 
 // --- 4. SABITLER ---
 const contractAddress = "3fzFmWRedsjuybCgic1rkkZAdKhzeHVvxs7sGBgrBAGS";
-const dashboardImage = "https://raw.githubusercontent.com/wombit1/Telegramwombit/main/dashboard.png";
+const dashboardImage = "https://raw.githubusercontent.com/wombit1/Telegramwombit/main/images/dashboard.png";
 const gameUrl = "https://wombit1.github.io/Telegramwombit/";
 
 // --- 5. initData DOĞRULAMA FONKSİYONU ---
