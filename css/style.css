@@ -2223,10 +2223,23 @@
       .lore-body, .why-desc, .teaching-body, .footer-text {
         color: #222 !important;
       }
+      .lore-spacing {
+        margin-bottom: var(--space-md);
+      }
       .imperial-frame, .why-card, .teaching, .risk-item, .faq-item,
       .ca-box, .seal, .dragon-quote, .decree-box, .fairlaunch-item {
         background: #f7f7f7 !important;
         border: 1px solid #ccc !important;
         box-shadow: none !important;
+      }
+      .dragon-icon {
+       text-align: center;
+       font-size: 1.8rem;
+       margin-bottom: 8px;
+      }
+      .dragon-quote {
+      text-align: center;
+      font-style: italic;
+      margin-top: var(--space-md);
       }
     }
