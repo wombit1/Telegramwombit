@@ -361,6 +361,9 @@
       }
 
       bindEvents() {
+        const faqButtons = document.querySelectorAll('.faq-question');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
         // Lore expand/collapse
         this.elements.loreToggle.addEventListener('click', () => {
           telegram.haptic?.light();
@@ -411,8 +414,8 @@
           if (e.target === mobileNav) closeMobileNav();
         });
         // Close the dialog whenever a nav link is tapped, then let the anchor scroll happen
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-          link.addEventListener('click', () => closeMobileNav());
+        mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => closeMobileNav());
         });
 
         // Blackpaper teaser toggle
@@ -429,7 +432,7 @@
         });
 
         // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(btn => {
+        faqButtons.forEach(btn => {
           btn.addEventListener('click', () => {
             telegram.haptic?.light();
             const answer = btn.nextElementSibling;
@@ -663,30 +666,42 @@
       }
 
       async fetchSolPrice() {
-        try {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 5000);
-          const res = await fetch(
-            'https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd',
-            { signal: controller.signal }
-          );
-          clearTimeout(timeout);
-          if (!res.ok) throw new Error('Price API error');
-          const data = await res.json();
-          const price = data?.solana?.usd;
-          if (typeof price !== 'number') throw new Error('Unexpected response shape');
+       const controller = new AbortController();
+       const timeout = setTimeout(() => controller.abort(), 5000);
 
-          this.solEl.textContent = '$' + price.toFixed(2);
-          this.solEl.classList.remove('loading');
-          this.solEl.removeAttribute('title');
-        } catch (err) {
-          // Offline, blocked, or API unavailable — fail gracefully, never show a fake number
-          this.solEl.textContent = 'N/A';
-          this.solEl.classList.remove('loading');
-          this.solEl.setAttribute('title', 'Price feed unavailable right now — check your connection');
+      try {
+        const res = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd',
+          { signal: controller.signal }
+        );
+
+        if (!res.ok) throw new Error('Price API error');
+
+        const data = await res.json();
+        const price = data?.solana?.usd;
+
+        if (typeof price !== 'number') {
+          throw new Error('Unexpected response shape');
         }
+
+        this.solEl.textContent = '$' + price.toFixed(2);
+        this.solEl.classList.remove('loading');
+        this.solEl.removeAttribute('title');
+
+      } catch (err) {
+        // Offline, blocked, or API unavailable — fail gracefully, never show a fake number
+        this.solEl.textContent = 'N/A';
+        this.solEl.classList.remove('loading');
+        this.solEl.setAttribute(
+          'title',
+          'Price feed unavailable right now — check your connection'
+        );
+
+      } finally {
+        clearTimeout(timeout);
       }
-    }
+            }
+          }
 
     class ScrollReveal {
       constructor() {
@@ -720,6 +735,7 @@
       }
 
       spawnMotes() {
+        const fragment = document.createDocumentFragment();
         const count = window.innerWidth < 500 ? 14 : 22;
         for (let i = 0; i < count; i++) {
           const mote = document.createElement('div');
@@ -747,8 +763,9 @@
             --base-opacity: ${baseOpacity};
             animation: moteDrift ${duration}s ease-in-out ${delay}s infinite alternate;
           `;
-          this.container.appendChild(mote);
+          fragment.appendChild(mote);
         }
+        this.container.appendChild(fragment);
       }
     }
 
